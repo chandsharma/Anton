@@ -1,0 +1,69 @@
+{% load static %}
+<html>
+    <head>
+        <title>Congress Seva Dal ID Card Generator</title>
+        <meta charset="UTF-8" />
+        <link href="{% static 'webpages/home_build.css' %}" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="{% static 'images/hand.ico' %}">
+    </head>
+    <body>
+       <div class="bg-[#D3D8E4] w-full h-full p-5" >
+        <div class="flex flex-col justify-evenly items-center h-full">
+            <h1 class="text-center font-extrabold text-4xl uppercase font-mono text-[#7C838D]">
+                Congress Seva Dal ID Card Generator
+            </h1>
+            <div class="w-full h-[80%] flex justify-center py-12 px-[20%]">
+                <div class="h-[90%] bg-gradient-to-br from-[#FEDCC7] to-[#D3E3F9] rounded-2xl w-full shadow-gray-400 shadow-2xl flex items-center justify-center">
+                    <div  id="capture" class="bg-white rounded-lg w-[60%] h-[80%] ">
+                      <div class="flex flex-col ">
+                        <div class="w-full h-1 bg-[#F3783D] mt-2"></div>
+                        <div class="w-full h-1 bg-[#3C9626] mt-1"></div>
+                        <div class="flex mt-2 ml-5">
+                            <img class="block h-16 w-auto" src="{% static 'images/csd.png' %}" alt="Congress Seva Dal ID Card Logo">
+                            <div class="flex items-center w-[100%] justify-center">
+                                <h2 class="text-3xl font-extrabold">हिमाचल प्रदेश कांग्रेस सेवादल</h2>
+                            </div>
+                        </div>
+                        <div class="flex ml-5 mt-5">
+                            <img class="border-gray-500 border w-[25%] h-full" src="{% static 'images/image.png' %}" alt="">
+                            <div class="ml-6">
+                                <h3 class="text-slate-900 font-sans text-lg">ID No. <b class="text-sky-800">CSDHP/NPR/1</b></h3>
+                                <h3 class="mt-1 font-extrabold text-3xl">Sunda Nain Gaur</h3>
+                                <h3 class="mt-1 text-2xl text-sky-800 font-sans font-medium">Member</h3>
+                                <h3 class="text-black text-lg ">Nurpur, Himachal Pradesh</h3>
+                            </div>
+                        </div>
+                        <div class="w-full h-1 bg-[#F3783D] mt-6"></div>
+                        <div class="w-full h-1 bg-[#3C9626] mt-1"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <button onclick="downloadID()" class=" mb-12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  px-4 rounded-full">
+                Downlaod ID Card
+            </button>
+        </div>
+       </div>
+    </body>
+    <script src="{% static 'webpages/html2canvas.js' %}"></script>
+    <script>
+        function downloadID(){
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+            saveAs(canvas.toDataURL(), 'id.png');
+        });}
+
+        function saveAs(uri, filename) {
+                var link = document.createElement('a');
+                if (typeof link.download === 'string') {
+                    link.href = uri;
+                    link.download = filename;
+                    //Firefox requires the link to be in the body
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    window.open(uri);
+                }
+                }
+    </script>
+</html>
